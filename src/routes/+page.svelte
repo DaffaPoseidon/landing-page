@@ -1,15 +1,16 @@
 <script>
-    import Header from "../component/Header.svelte";
-    import SectionHero from "../component/SectionHero.svelte";
-    import MiddleContent from "../component/MiddleContent.svelte";
-    import MainContent from "../component/MainContent.svelte";
-    import Footer from "../component/Footer.svelte";
+    import { each } from "svelte/internal";
+    import TodoForm from "../components/TodoForm.svelte";
+    import { todos } from "../stores/todoStore.js";
+    import Todo from "../components/Todo.svelte";
 </script>
 
-<div>
-    <Header />
-    <SectionHero />
-    <MiddleContent/>
-    <MainContent/>
-    <Footer/>
-</div>
+<main>
+    <h1 class="text-2xl font-bold text-center text-gray-800 md:text-3xl">
+        My Todos
+    </h1>
+    <TodoForm />
+    {#each $todos as todo}
+        <Todo {todo} index={todos.id} />
+    {/each}
+</main>
